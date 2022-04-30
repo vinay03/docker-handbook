@@ -6,6 +6,16 @@ services:
     ports:
       - "3306:3306"
     environment:
+      # 
+      # To Set default root password
       MYSQL_ROOT_PASSWORD: "admin"
+
+      # To allow mysql connection from outside of this docker. It can be from host sytem or another docker container.
+      MYSQL_ROOT_HOST: "%"
+      #
+      # Database to be created while starting docker container
+      # More Details : https://dev.mysql.com/doc/mysql-installation-excerpt/5.7/en/docker-mysql-more-topics.html#docker_var_mysql_database
+      MYSQL_DATABASE: "testdb"
     volumes:
-      - ./data/db:/var/lib/mysql
+      # To persist databases created inside the container.
+      - ./data:/var/lib/mysql
