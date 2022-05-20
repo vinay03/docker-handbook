@@ -2,7 +2,7 @@
 
 ## List of Contenst
 ### Databases
-- [MySQL Server](mysql-server)
+- [MySQL Server](mysql-server/docker-compose.yml)
 - [MySQL + PHPMyAdmin](mysql-server-phpmyadmin)
 - [PostgreSQL](postgresql)
 - [PostgreSQL + PgAdmin](postgresql_pgadmin)
