@@ -5,7 +5,6 @@ services:
     image: mysql/mysql-server:latest
     ports:
       - "3306:3306"
-    restart: always
     volumes:
       - ./data:/var/lib/mysql
     environment:
@@ -13,7 +12,6 @@ services:
 
   phpmyadmin:
     image: phpmyadmin
-    restart: always
     ports:
       - 8080:80
     environment:

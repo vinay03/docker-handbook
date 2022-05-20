@@ -3,7 +3,6 @@ version: "3"
 services:
   postgres:
     image: postgres
-    restart: always
     environment:
       - POSTGRES_PASSWORD=admin
       - POSTGRES_USER=admin
@@ -14,7 +13,6 @@ services:
       - ./data:/var/lib/postgresql/data
   pgadmin:
     image: dpage/pgadmin4
-    restart: always
     environment:
       - PGADMIN_DEFAULT_EMAIL=vjeurkar03@gmail.com
       - PGADMIN_DEFAULT_PASSWORD=root
