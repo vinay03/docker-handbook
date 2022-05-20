@@ -9,7 +9,7 @@ services:
       - POSTGRES_USER=admin
       - POSTGRES_DB=testdb
     ports:
-      - "5432:5432"
+      - "54321:54321"
     volumes:
       - ./data:/var/lib/postgresql/data
   pgadmin:
