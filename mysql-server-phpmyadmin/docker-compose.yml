@@ -1,11 +1,13 @@
 version: '3'
 
 services:
-  db:
+  mysqldb:
     image: mysql/mysql-server:latest
     ports:
       - "3306:3306"
     restart: always
+    volumes:
+      - ./data:/var/lib/mysql
     environment:
       MYSQL_ROOT_PASSWORD: "admin"
 
@@ -16,9 +18,11 @@ services:
       - 8080:80
     environment:
       - PMA_ARBITRARY=1
-      - PMA_HOST="db"
+      - PMA_HOST="mysqldb"
       - PMA_PORT="3306"
       - PMA_USER="root"
       - PMA_PASSWORD="admin"
-    # depends_on:
-      # - db
+      - MAX_EXECUTION_TIME=0
+      - UPLOAD_LIMIT=256M
+    depends_on:
+      - mysqldb
