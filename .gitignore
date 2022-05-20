@@ -2,3 +2,4 @@ mysql-server/data
 mongodb/data
 mongodb-express/data
 postgresql/data
+postgresql_pgadmin/data
