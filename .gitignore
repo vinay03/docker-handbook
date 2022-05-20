@@ -1,3 +1,4 @@
 mysql-server/data
 mongodb/data
 mongodb-express/data
+postgresql/data
