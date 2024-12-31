@@ -22,3 +22,18 @@ services:
       - postgres
     volumes:
       - ./pgadmin:/var/lib/pgadmin
+  keycloak:
+    image: quay.io/keycloak/keycloak:26.0.7
+    environment:
+      - KC_BOOTSTRAP_ADMIN_USERNAME=admin
+      - KC_BOOTSTRAP_ADMIN_PASSWORD=admin
+    ports:
+      - "8080:8080"
+    command:
+      - "start-dev"
+    depends_on:
+      - postgres
+    volumes:
+      - ./kc-conf:/opt/keycloak/conf/
+
+      

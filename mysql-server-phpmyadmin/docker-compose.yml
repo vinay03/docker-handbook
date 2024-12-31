@@ -1,26 +1,39 @@
-version: '3'
+version: '3.9'
 
 services:
-  mysqldb:
-    image: mysql/mysql-server:latest
+  mysql:
+    image: mysql:8.0
+    container_name: mysql_server
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_DATABASE: exampledb
+      MYSQL_USER: exampleuser
+      MYSQL_PASSWORD: examplepass
     ports:
       - "3306:3306"
     volumes:
-      - ./data:/var/lib/mysql
-    environment:
-      MYSQL_ROOT_PASSWORD: "admin"
+      - mysql_data:/var/lib/mysql
+    command: --default-authentication-plugin=mysql_native_password --bind-address=0.0.0.0
+    networks:
+      - app_network
 
   phpmyadmin:
-    image: phpmyadmin
-    ports:
-      - 8080:80
+    image: phpmyadmin/phpmyadmin:latest
+    container_name: phpmyadmin
+    restart: always
     environment:
-      - PMA_ARBITRARY=1
-      - PMA_HOST="mysqldb"
-      - PMA_PORT="3306"
-      - PMA_USER="root"
-      - PMA_PASSWORD="admin"
-      - MAX_EXECUTION_TIME=0
-      - UPLOAD_LIMIT=256M
+      PMA_HOST: mysql_server
+      PMA_PORT: 3306
+    ports:
+      - "8080:80"
     depends_on:
-      - mysqldb
+      - mysql
+    networks:
+      - app_network
+
+volumes:
+  mysql_data:
+
+networks:
+  app_network:
